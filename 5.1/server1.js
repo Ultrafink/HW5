@@ -1,19 +1,19 @@
-const http = require('http');
+import http from 'http';
 
 const server = http.createServer((req, res) => {
-    res.setHeader('Content-Type', 'text/plain');ж
+  res.setHeader('Content-Type', 'text/plain');
 
-    const authHeader = req.headers['authorization'];
+  const authHeader = req.headers.authorization;
 
-    if (!authHeader) {
-        res.statusCode = 401;
-        res.end('Unautorized');
-    } else {
-        res.statusCode =200;
-        res.end('Autorization header received');
-    }
+  if (!authHeader) {
+    res.statusCode = 401;
+    res.end('Unauthorized');
+  } else {
+    res.statusCode = 200;
+    res.end('Authorization header received');
+  }
 });
 
 server.listen(3000, () => {
-    console.log('Server1 is running on port 3000');
+  console.log('Server 1 is running on port 3000');
 });

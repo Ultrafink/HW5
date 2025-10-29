@@ -1,20 +1,23 @@
-const http = require('http');
+import http from 'http';
 
 const server = http.createServer((req, res) => {
-    res.setHeader('Content-Type', 'text/plain');
+  res.setHeader('Content-Type', 'text/plain');
 
-    if (req.method === 'PUT') {
-        res.statusCode = 200;
-        res.end('PUT equest processed');
-    } else if (req.method === 'DELETE') {
-        res.statusCode = 200;
-        res.end('DELETE request processed');
-    } else {
-        res.statusCode = 405;
-        res.end('Method not supported');
-    }
+  switch (req.method) {
+    case 'PUT':
+      res.statusCode = 200;
+      res.end('PUT request processed');
+      break;
+    case 'DELETE':
+      res.statusCode = 200;
+      res.end('DELETE request processed');
+      break;
+    default:
+      res.statusCode = 405;
+      res.end('Method not supported');
+  }
 });
 
 server.listen(3000, () => {
-    console.log('Server3 is running on port 3000');
+  console.log('✅ Server 3 is running on port 3000');
 });
